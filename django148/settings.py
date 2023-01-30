@@ -28,6 +28,10 @@ DEBUG = os.environ['MODE'] == 'debug'
 
 ALLOWED_HOSTS = os.environ['HOST'].split(',')
 
+INTERNAL_IPS = {
+    "127.0.0.1",
+}
+
 
 # Application definition
 
@@ -39,7 +43,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "tailwind",
 ]
+
+if DEBUG:
+    INSTALLED_APPS.append('django_browser_reload')
+
+TAILWIND_APP_NAME = "dissertations"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -50,6 +60,9 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+if DEBUG:
+    MIDDLEWARE.append('django_browser_reload.middleware.BrowserReloadMiddleware')
 
 ROOT_URLCONF = "django148.urls"
 

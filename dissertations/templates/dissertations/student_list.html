@@ -1,0 +1,33 @@
+{% extends 'dissertations/base.html' %}
+
+{% block title %}Students{% endblock title %}
+
+{% block content %}
+
+<h1 class="font-semibold underline underline-offset-2">Students</h1>
+
+{% if student_list %}
+<p>
+    There are {{ student_list | length }} students on the system.
+</p>
+<p>
+    Use the <a class="underline" href="/admin">admin panel</a> to view and
+    manage them.
+</p>
+{% if students_without_supervisors %}
+<p class="text-red-400">
+    Some students do not have supervisors:
+</p>
+<ul>
+    {% for student in students_without_supervisors %}
+    <li>{{ student.full_name }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p class="text-green-700">
+    All students have supervisors.
+</p>
+{% endif %}
+{% endif %}
+
+{% endblock content %}
