@@ -17,6 +17,9 @@ class StudentSupervisorInline(admin.TabularInline):
     autocomplete_fields = ('supervisor', )
     extra = 1
 
+class SupervisorStudentInline(admin.TabularInline):
+    model = Student.supervisors.through
+
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
     fieldsets = (
@@ -40,6 +43,7 @@ class StudentAdmin(admin.ModelAdmin):
 
 @admin.register(Supervisor)
 class SupervisorAdmin(admin.ModelAdmin):
+    inlines = (SupervisorStudentInline, )
     list_display = ('id', 'family_name', 'given_name')
     list_display_links = ('id', 'family_name', 'given_name')
     ordering = ('family_name', 'given_name')
