@@ -17,7 +17,7 @@
                     <a href="/" class="hover:text-sky-700">Home</a> |
                     <a href="{% url 'dissertations:students_index' %}" class="hover:text-sky-700">Students</a> |
                     <a href="{% url 'dissertations:supervisors_index' %}" class="hover:text-sky-700">Supervisors</a> |
-                    <a href="/admin" class="hover:text-sky-700">Admin</a>
+                    <a href="https://{{ request.get_host }}/admin" class="hover:text-sky-700">Admin</a>
                 </nav>
     
                 <div class="border-gray-800 border-2 p-4">
